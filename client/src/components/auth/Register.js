@@ -32,6 +32,7 @@ const Register = () => {
             type="text"
             placeholder="Name"
             name="name"
+            autoComplete="username"
             value={name}
             onChange={e => onChange(e)}
             required />
@@ -41,6 +42,7 @@ const Register = () => {
             type="email"
             placeholder="Email Address"
             name="email"
+            autoComplete="email"
             value={email}
             onChange={e => onChange(e)}
           />
@@ -54,6 +56,7 @@ const Register = () => {
             type="password"
             placeholder="Password"
             name="password"
+            autoComplete="current-password"
             value={password}
             onChange={e => onChange(e)}
             minLength="6"
@@ -64,6 +67,7 @@ const Register = () => {
             type="password"
             placeholder="Confirm Password"
             name="password2"
+            autoComplete="new-password"
             value={password2}
             onChange={e => onChange(e)}
             minLength="6"
@@ -72,7 +76,7 @@ const Register = () => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="my-1">
-        Already have an account? <Link href="/login">Sign In</Link>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </Fragment>
   )
