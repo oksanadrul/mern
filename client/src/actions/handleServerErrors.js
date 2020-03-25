@@ -1,6 +1,6 @@
 import { setAlert } from '../actions/alert';
 
-const handleServerErrors = (err) => dispatch => {
+export const handleServerErrors = (err) => dispatch => {
   const errors = err.response.data.errors;
 
   if (errors) {
@@ -9,5 +9,3 @@ const handleServerErrors = (err) => dispatch => {
     });
   }
 };
-
-export default handleServerErrors;
