@@ -17,7 +17,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentUserProfile();
-  }, [])
+  }, [getCurrentUserProfile])
 
   return loading && !profile ? <Spinner /> : <Fragment>
     <h1 className='large text-primary'>Dashboard</h1>
