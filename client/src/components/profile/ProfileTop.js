@@ -11,7 +11,6 @@ const ProfileTop = ({
     social
   }
 }) => {
-  console.log()
   return (
     <div className='profile-top bg-primary p-2'>
       <img

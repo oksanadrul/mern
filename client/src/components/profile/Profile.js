@@ -21,7 +21,6 @@ const Profile = ({
     getProfileById(match.params.id)
   }, [getProfileById, match.params.id]);
 
-
   return (
     <Fragment>{!profile || loading ? <Spinner /> : <Fragment>
       <Link to='/profiles' className='btn btn-light'>
