@@ -1,5 +1,6 @@
 import {
   GET_POSTS,
+  ADD_POST,
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST
@@ -22,11 +23,18 @@ export default function (state = initialState, action) {
         loading: false
       }
 
-    case POST_ERROR:
+    case ADD_POST:
       return {
         ...state,
-        loading: false,
-        error: payload
+        posts: [payload, ...state.posts],
+        loading: false
+      }
+
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== payload.id),
+        loading: false
       }
 
     case UPDATE_LIKES:
@@ -38,11 +46,11 @@ export default function (state = initialState, action) {
         loading: false
       }
 
-    case DELETE_POST:
+    case POST_ERROR:
       return {
         ...state,
-        posts: state.posts.filter(post => post._id !== payload.id),
-        loading: false
+        loading: false,
+        error: payload
       }
 
     default:
