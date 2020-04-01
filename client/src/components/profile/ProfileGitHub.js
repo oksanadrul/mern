@@ -7,7 +7,6 @@ import { getGitHubRepos } from '../../actions/profile'
 const ProfileGitHub = ({ gitHubUserName, getGitHubRepos, repos, profileGitHubError }) => {
   useEffect(() => { getGitHubRepos(gitHubUserName) }, [getGitHubRepos, gitHubUserName])
 
-  console.log(profileGitHubError, 'profileGitHubError')
   return (
     <div className="profile-github">
       <h2 className="text-primary my-1">Github Repos</h2>
