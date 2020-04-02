@@ -1,15 +1,19 @@
 import React, { Fragment, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import Spinner from '../layout/Spinner'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getPosts } from '../../actions/post'
 import PostItem from './PostItem'
 import PostForm from './PostForm'
 
-const Posts = ({ post: { posts, loading }, getPosts }) => {
+
+const Posts = () => {
+  const post = useSelector(state => state.post)
+  const dispatch = useDispatch();
+
+  const { posts, loading } = post;
   useEffect(() => {
-    getPosts();
-  }, [getPosts])
+    dispatch(getPosts());
+  }, [dispatch])
   return loading ? <Spinner /> : <Fragment>
     <PostForm />
     <h1 className="large text-primary">Posts</h1>
@@ -20,13 +24,4 @@ const Posts = ({ post: { posts, loading }, getPosts }) => {
   </Fragment>
 }
 
-Posts.propTypes = {
-  post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired,
-}
-
-const mapStateToProps = state => ({
-  post: state.post
-})
-
-export default connect(mapStateToProps, { getPosts })(Posts)
+export default Posts;

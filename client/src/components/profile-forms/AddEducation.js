@@ -1,23 +1,13 @@
-import React, { Fragment, useState } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { educationState } from './profileInitialStates';
 import { addEducation } from '../../actions/profile';
 
-const initialState = {
-  school: '',
-  degree: '',
-  fieldofstudy: '',
-  from: '',
-  to: '',
-  current: false,
-  description: ''
-};
-
-const AddEducation = ({ addEducation, history }) => {
-  const [formData, setFormData] = useState(initialState);
-
+const AddEducation = ({ history }) => {
+  const [formData, setFormData] = useState(educationState);
   const [toDateDisabled, toggleDisabled] = useState(false);
+  const dispatch = useDispatch();
 
   const { school,
     degree,
@@ -32,7 +22,7 @@ const AddEducation = ({ addEducation, history }) => {
 
   const setEducation = e => {
     e.preventDefault();
-    addEducation(formData, history);
+    dispatch(addEducation(formData, history));
   }
   return (
     <Fragment>
@@ -127,8 +117,4 @@ const AddEducation = ({ addEducation, history }) => {
   )
 }
 
-AddEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
-}
-
-export default connect(null, { addEducation })(withRouter(AddEducation));
+export default withRouter(AddEducation);

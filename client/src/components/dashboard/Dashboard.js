@@ -1,23 +1,24 @@
-import React, { useEffect, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, { useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import { getCurrentUserProfile } from '../../actions/profile';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
+import { getCurrentUserProfile } from '../../actions/profile';
 import { deleteAccount } from '../../actions/profile'
 
-const Dashboard = ({
-  getCurrentUserProfile,
-  auth: { user },
-  profile: { profile, loading },
-  deleteAccount
-}) => {
+const Dashboard = () => {
+  const auth = useSelector(state => state.auth);
+  const profileState = useSelector(state => state.profile);
+  const dispatch = useDispatch();
+
+  const { user } = auth;
+  const { profile, loading } = profileState;
+
   useEffect(() => {
-    getCurrentUserProfile();
-  }, [getCurrentUserProfile])
+    dispatch(getCurrentUserProfile());
+  }, [dispatch])
 
   return loading && !profile ? <Spinner /> : <Fragment>
     <h1 className='large text-primary'>Dashboard</h1>
@@ -32,7 +33,7 @@ const Dashboard = ({
 
         <div className="my-2">
           <button
-            onClick={() => deleteAccount()} className="btn btn-danger">
+            onClick={() => dispatch(deleteAccount())} className="btn btn-danger">
             <i className="fas fa-user-minus">{' '}Delete My Account</i>
           </button>
         </div>
@@ -47,16 +48,5 @@ const Dashboard = ({
   </Fragment>
 }
 
-Dashboard.propTypes = {
-  getCurrentUserProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
-  deleteAccount: PropTypes.func.isRequired,
-}
+export default Dashboard;
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  profile: state.profile
-})
-
-export default connect(mapStateToProps, { getCurrentUserProfile, deleteAccount })(Dashboard);

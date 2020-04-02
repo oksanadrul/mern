@@ -1,23 +1,14 @@
-import React, { Fragment, useState } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { addExperience } from '../../actions/profile'
+import React, { Fragment, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { experienceState } from './profileInitialStates'
+import { addExperience } from '../../actions/profile';
 
-const initialState = {
-  company: '',
-  title: '',
-  location: '',
-  from: '',
-  to: '',
-  current: false,
-  description: ''
-};
 
-const AddExperience = ({ addExperience, history }) => {
-  const [formData, setFormData] = useState(initialState);
-
+const AddExperience = ({ history }) => {
+  const [formData, setFormData] = useState(experienceState);
   const [toDateDisabled, toggleDisabled] = useState(false);
+  const dispatch = useDispatch();
 
   const { company, title, location, from, to, current, description } = formData;
 
@@ -26,7 +17,7 @@ const AddExperience = ({ addExperience, history }) => {
 
   const setExperience = e => {
     e.preventDefault();
-    addExperience(formData, history);
+    dispatch(addExperience(formData, history));
   }
 
   return (
@@ -89,8 +80,4 @@ const AddExperience = ({ addExperience, history }) => {
   )
 }
 
-AddExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
-}
-
-export default connect(null, { addExperience })(withRouter(AddExperience));
+export default withRouter(AddExperience);

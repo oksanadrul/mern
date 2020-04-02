@@ -1,27 +1,13 @@
-import React, { useState, Fragment } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-
+import React, { useState, Fragment } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { profileState } from './profileInitialStates';
+import { useDispatch } from 'react-redux';
 import { createProfile } from '../../actions/profile';
 
-const CreateProfile = ({ createProfile, history }) => {
-  const [formData, setFormData] = useState({
-    company: '',
-    website: '',
-    location: '',
-    status: '',
-    skills: '',
-    githubusername: '',
-    bio: '',
-    twitter: null,
-    facebook: null,
-    linkedin: null,
-    youtube: null,
-    instagram: null
-  });
-
+const CreateProfile = ({ history }) => {
+  const [formData, setFormData] = useState(profileState);
   const [displaySocialInputs, toogleSocialInputs] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     company,
@@ -42,7 +28,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
   const sendProfile = (e) => {
     e.preventDefault();
-    createProfile(formData, history)
+    dispatch(createProfile(formData, history))
   }
 
   return (
@@ -155,8 +141,4 @@ const CreateProfile = ({ createProfile, history }) => {
   )
 }
 
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-}
-
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+export default withRouter(CreateProfile);

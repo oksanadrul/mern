@@ -6,7 +6,8 @@ import {
   DELETE_POST,
   GET_POST,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  CLEAR_ALL_POSTS
 } from '../actions/types'
 
 const initialState = {
@@ -80,6 +81,9 @@ export default function (state = initialState, action) {
         loading: false,
         error: payload
       }
+
+    case CLEAR_ALL_POSTS:
+      return initialState;
 
     default:
       return state

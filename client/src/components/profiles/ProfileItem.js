@@ -2,17 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const ProfileItem = (
-  {
-    profile: {
-      user: { _id, name, avatar },
-      status,
-      company,
-      location,
-      skills
-    }
+const ProfileItem = ({
+  profile: {
+    user: { _id, name, avatar },
+    status,
+    company,
+    location,
+    skills
   }
-) => {
+}) => {
   const devSkill = skills.slice(0, 4).map((skill, index) => (
     <li key={index} className='text-primary'>
       <i className='fas fa-check' /> {skill}

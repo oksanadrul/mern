@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Spinner from '../layout/Spinner'
 import { getProfileById } from '../../actions/profile'
 import ProfileTop from './ProfileTop'
@@ -10,16 +9,17 @@ import ProfileExperience from './ProfileExperience'
 import ProfileEducation from './ProfileEducation'
 import ProfileGitHub from './ProfileGitHub'
 
-const Profile = ({
-  getProfileById,
-  profile: { profile, loading },
-  auth,
-  match
-}) => {
+
+const Profile = ({ match }) => {
+  const stateProfile = useSelector(state => state.profile);
+  const auth = useSelector(state => state.auth);
+  const dispatch = useDispatch()
+
+  const { profile, loading } = stateProfile
 
   useEffect(() => {
-    getProfileById(match.params.id)
-  }, [getProfileById, match.params.id]);
+    dispatch(getProfileById(match.params.id))
+  }, [dispatch, match.params.id]);
 
   return (
     <Fragment>{!profile || loading ? <Spinner /> : <Fragment>
@@ -54,15 +54,5 @@ const Profile = ({
   )
 }
 
-Profile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-}
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
-})
-
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default Profile;

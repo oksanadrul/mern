@@ -1,49 +1,33 @@
-import React, { Fragment, useState, useEffect } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { profileState } from './profileInitialStates';
 import { createProfile, getCurrentUserProfile } from '../../actions/profile';
 
-const initialState = {
-  company: '',
-  website: '',
-  location: '',
-  status: '',
-  skills: '',
-  githubusername: '',
-  bio: '',
-  twitter: null,
-  facebook: null,
-  linkedin: null,
-  youtube: null,
-  instagram: null
-}
 
-const EditProfile = ({
-  profile: { profile, loading },
-  createProfile,
-  getCurrentUserProfile,
-  history
-}) => {
-  const [formData, setFormData] = useState(initialState);
-
+const EditProfile = ({ history }) => {
+  const [formData, setFormData] = useState(profileState);
   const [displaySocialInputs, toogleSocialInputs] = useState(false);
 
+  const storeProfile = useSelector(state => state.profile)
+  const { profile, loading } = storeProfile;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (!profile) getCurrentUserProfile();
+    if (!profile) dispatch(getCurrentUserProfile());
     if (!loading) {
-      const profileData = { ...initialState };
+      const profileData = { ...profileState };
       for (const key in profile) {
         if (key in profileData) profileData[key] = profile[key];
       }
+
       for (const key in profile.social) {
         if (key in profileData) profileData[key] = profile.social[key];
       }
       setFormData(profileData);
     }
-
-  }, [profile, loading, getCurrentUserProfile]);
+  }, [profile, loading, dispatch]);
 
   const {
     company,
@@ -64,7 +48,7 @@ const EditProfile = ({
 
   const sendProfile = (e) => {
     e.preventDefault();
-    createProfile(formData, history, true)
+    dispatch(createProfile(formData, history, true))
   }
 
   return (
@@ -177,17 +161,4 @@ const EditProfile = ({
   )
 }
 
-EditProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  getCurrentUserProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-}
-
-const mapStateToProps = state => ({
-  profile: state.profile
-})
-
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentUserProfile }
-)(withRouter(EditProfile));
+export default withRouter(EditProfile);
