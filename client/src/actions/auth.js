@@ -1,17 +1,14 @@
 
 import axios from 'axios';
-
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
-import { setAuthToken } from '../utils';
 import { handleServerErrors } from './handleServerErrors';
-import Cookies from 'js-cookie'
 
 
 // Load User
 export const loadUser = () => async dispatch => {
-  if (Cookies.get('token')) {
-    setAuthToken(Cookies.get('token'));
-  }
+  // if (Cookies.get('token')) {
+  //   setAuthToken(Cookies.get('token'));
+  // }
 
   try {
     const res = await axios.get('/api/auth');

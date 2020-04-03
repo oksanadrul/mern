@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { Button, ButtonGroup } from '@material-ui/core';
 
 
 const Landing = ({ isAuthenticated }) => {
@@ -16,13 +17,13 @@ const Landing = ({ isAuthenticated }) => {
         <div className="landing-inner">
           <h1 className="x-large">Developer Connector</h1>
           <p className="lead">
-            Create a developer profile/portfolio, share posts and get help from
+            Create a developer profile/portfolio, generate and download CV, share posts and get help from
             other developers
           </p>
-          <div className="buttons">
-            <Link to="/register" className="btn btn-primary">Sign Up</Link>
-            <Link to="/login" className="btn btn-light">Login</Link>
-          </div>
+          <ButtonGroup size="large" aria-label="large outlined primary button group">
+            <Button color="primary" component={Link} to={'/register'}>Sign Up</Button>
+            <Button color="primary" component={Link} to={'/login'}>Login</Button>
+          </ButtonGroup>
         </div>
       </div>
     </section>
