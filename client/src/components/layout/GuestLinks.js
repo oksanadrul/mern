@@ -9,7 +9,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles({
   root: {
-    width: 400,
+    width: 250,
     background: 'transparent'
   },
 });

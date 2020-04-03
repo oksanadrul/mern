@@ -40,8 +40,11 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
-  margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Text Styles*/
@@ -235,11 +238,11 @@ img {
 }
 
 /* Forms */
-.form .form-group {
+/* .form .form-group {
   margin: 1.2rem 0;
-}
+} */
 
-.form .form-text {
+/* .form .form-text {
   display: block;
   margin-top: 0.3rem;
   color: #888;
@@ -287,7 +290,7 @@ button {
 .form .social-input i.fa-linkedin {
   color: #0077b5;
 }
-
+*/
 .table th,
 .table td {
   padding: 1rem;
@@ -575,3 +578,13 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+ /*Start*/
+ .login-form-wrapper {
+  width: 50%;
+  height: calc(100vh - 100px);
+  margin: auto;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }

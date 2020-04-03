@@ -5,7 +5,7 @@ export const handleServerErrors = (err) => dispatch => {
 
   if (errors) {
     errors.forEach(error => {
-      dispatch(setAlert(error.msg, 'danger'));
+      dispatch(setAlert(error.msg, 'error'));
     });
   }
 };
