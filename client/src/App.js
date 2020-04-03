@@ -10,9 +10,10 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/auth';
 import { setAuthToken } from './utils';
+import Cookies from 'js-cookie'
 
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
+if (Cookies.get('token')) {
+  setAuthToken(Cookies.get('token'));
 }
 
 const App = () => {

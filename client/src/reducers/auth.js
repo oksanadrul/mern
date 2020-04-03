@@ -1,7 +1,8 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, ACCOUNT_DELETED } from '../actions/types';
+import Cookies from 'js-cookie'
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: Cookies.get('token'),
   isAuthenticated: false,
   loading: true,
   user: null
@@ -20,7 +21,7 @@ export default function (state = initialState, action) {
 
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', payload.token);
+      Cookies.set('token', payload.token);
       return {
         ...state,
         ...payload,
@@ -33,7 +34,7 @@ export default function (state = initialState, action) {
     case LOGIN_FAIL:
     case ACCOUNT_DELETED:
     case LOGOUT:
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       return {
         ...state,
         token: null,
