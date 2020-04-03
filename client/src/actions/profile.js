@@ -14,7 +14,7 @@ export const getCurrentUserProfile = () => async dispatch => {
     });
   } catch (error) {
 
-    dispatch(setAlert(error.response.data.msg, 'danger'))
+    dispatch(setAlert(error.response.data.msg, 'warning'))
     dispatch({
       type: PROFILE_ERROR,
       payload: {

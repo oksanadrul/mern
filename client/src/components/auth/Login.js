@@ -38,20 +38,23 @@ const Login = () => {
   }
 
   return (
-    <div className="login-form-wrapper">
+    <div className="form-wrapper">
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead"><i className="fas fa-user"></i> Sign Into Your Account</p>
-      <form noValidate autoComplete="on" onSubmit={e => onSubmit(e)} className={classes.root}>
-        <TextField id="outlined-basic" fullWidth variant="outlined"
+      <form onSubmit={e => onSubmit(e)} className={classes.root}>
+        <TextField fullWidth variant="outlined"
           label="Email Address"
+          autoComplete="email"
           name="email"
           value={email}
           onChange={e => onChange(e)}
         />
-        <TextField id="outlined-basic" fullWidth
+        <TextField fullWidth variant="outlined"
           label="Password"
-          variant="outlined"
-          name="password" value={password} type="password"
+          autoComplete="password"
+          name="password"
+          value={password}
+          type="password"
           onChange={e => onChange(e)}
           minLength="6"
         />

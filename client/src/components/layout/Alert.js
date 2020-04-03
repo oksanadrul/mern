@@ -5,7 +5,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 
 function Nontification(props) {
-  console.log(props, 'errorprops')
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 

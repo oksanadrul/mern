@@ -579,7 +579,7 @@ button {
   }
 }
  /*Start*/
- .login-form-wrapper {
+ .form-wrapper {
   width: 50%;
   height: calc(100vh - 100px);
   margin: auto;
