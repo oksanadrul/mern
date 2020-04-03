@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core';
 
 const Navbar = () => {
   const authState = useSelector(state => state.auth);
-  const { isAuthenticated } = authState;
+  const { isAuthenticated, loading } = authState;
 
   return (
     <div>
@@ -16,7 +16,7 @@ const Navbar = () => {
         <h1>
           <Link to="/"><i className="fas fa-code"></i> DevConnector</Link>
         </h1>
-        <Fragment>{isAuthenticated ? <AuthLinks /> : <GuestLinks />}</Fragment>
+        {!loading && <Fragment>{isAuthenticated ? <AuthLinks /> : <GuestLinks />}</Fragment>}
       </nav>
     </div>
   )

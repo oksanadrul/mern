@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Landing from './components/layout/Landing';
@@ -11,6 +11,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { setAuthToken } from './utils'
+import { loadUser } from './actions/auth';
+import Coockies from 'js-cookie';
 
 // Set up material-ui theme
 // https://material-ui.com/customization/palette/
@@ -29,8 +32,14 @@ let theme = createMuiTheme({
 theme = responsiveFontSizes(theme);
 
 
+if (Coockies.get('token')) {
+  setAuthToken(Coockies.get('token'))
+}
 
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser())
+  })
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
