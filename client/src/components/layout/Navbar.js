@@ -6,7 +6,7 @@ import GuestLinks from './GuestLinks';
 
 const Navbar = () => {
   const authState = useSelector(state => state.auth);
-  const { isAuthenticated, loading } = authState;
+  const { isAuthenticated } = authState;
 
   return (
     <div>
@@ -14,7 +14,7 @@ const Navbar = () => {
         <h1>
           <Link to="/"><i className="fas fa-code"></i> DevConnector</Link>
         </h1>
-        {!loading && (<Fragment>{isAuthenticated ? <AuthLinks /> : <GuestLinks />}</Fragment>)}
+        <Fragment>{isAuthenticated ? <AuthLinks /> : <GuestLinks />}</Fragment>
       </nav>
     </div>
   )
