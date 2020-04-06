@@ -40,7 +40,7 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
-  margin-top: 100px;
+  margin-top: 79px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +57,7 @@ img {
 .large {
   font-size: 3rem;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .lead {
@@ -361,6 +361,13 @@ button {
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+  transition: transform .4s;
+}
+
+.profile:hover {
+  -ms-transform: scale(1.02); /* IE 9 */
+  -webkit-transform: scale(1.02); /* Safari 3-8 */
+  transform: scale(1.02);
 }
 
 /* Profile Page */
