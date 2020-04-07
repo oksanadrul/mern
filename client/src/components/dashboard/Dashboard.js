@@ -6,9 +6,19 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 import { getCurrentUserProfile } from '../../actions/profile';
-import { deleteAccount } from '../../actions/profile'
+import { deleteAccount } from '../../actions/profile';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+  margin: {
+    marginTop: '1rem',
+  },
+}));
+
 
 const Dashboard = () => {
+  const classes = useStyles();
   const auth = useSelector(state => state.auth);
   const profileState = useSelector(state => state.profile);
   const dispatch = useDispatch();
@@ -41,9 +51,7 @@ const Dashboard = () => {
     ) :
       <Fragment>
         <p>You have not yet setup a profile, please add some info</p>
-        <Link to='/create-profile' className='btn btn-primary my-1'>
-          Create Profile
-          </Link>
+        <Button component={Link} to='/create-profile' variant="outlined" color="primary" className={classes.margin}>Create Profile </Button>
       </Fragment>}
   </Fragment>
 }

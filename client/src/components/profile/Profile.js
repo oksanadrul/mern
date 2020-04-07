@@ -11,6 +11,7 @@ import ProfileGitHub from './ProfileGitHub';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import EditIcon from '@material-ui/icons/Edit';
 
 
 const useStyles = makeStyles(() => ({
@@ -37,7 +38,10 @@ const Profile = ({ match }) => {
       <Button component={Link} to='/profiles' variant="outlined" color="primary" className={classes.margin} startIcon={<KeyboardBackspaceIcon />}>
         Back To Profiles
       </Button>
-      {auth.isAuthenticated && !auth.loading && auth.user._id === profile.user._id && (<Link to='/edit-profile' className='btn btn-dark'>Edit Profile</Link>)}
+      {auth.isAuthenticated && !auth.loading && auth.user._id === profile.user._id && (<Button component={Link} to='/edit-profile' variant="outlined" color="primary" className={classes.margin} endIcon={<EditIcon />}>
+        Edit Profile
+      </Button>)
+      }
       <div className="profile-grid my-1">
         <ProfileTop profile={profile} />
         <ProfileAbout profile={profile} />
@@ -55,7 +59,6 @@ const Profile = ({ match }) => {
             : <h4>No education credentials</h4>
           }
         </div>
-
         {profile.githubusername && (
           <ProfileGitHub gitHubUserName={profile.githubusername} />
         )}

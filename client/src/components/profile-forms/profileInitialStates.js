@@ -6,11 +6,11 @@ const profileState = {
   skills: '',
   githubusername: '',
   bio: '',
-  twitter: null,
-  facebook: null,
-  linkedin: null,
-  youtube: null,
-  instagram: null
+  twitter: '',
+  facebook: '',
+  linkedin: '',
+  youtube: '',
+  instagram: ''
 };
 
 const educationState = {

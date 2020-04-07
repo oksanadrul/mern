@@ -41,6 +41,7 @@ img {
   overflow: hidden;
   padding: 0 2rem;
   margin-top: 79px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;

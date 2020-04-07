@@ -5,10 +5,9 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    '& > .MuiLinearProgress-root': {
-      marginLeft: '-2rem',
-      marginRight: '-2rem'
-    },
+    position: 'absolute',
+    top: '79px',
+    left: '0'
   },
 }));
 
