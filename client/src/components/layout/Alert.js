@@ -11,8 +11,9 @@ function Nontification(props) {
 const Alert = () => {
   const alerts = useSelector(state => state.alert);
   return (
-    alerts && alerts.map(alert => (
+    alerts && alerts.map((alert, ind) => (
       <Snackbar
+        key={ind}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={true} >
         <Nontification severity={alert.alertType}>

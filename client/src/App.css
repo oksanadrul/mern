@@ -64,6 +64,8 @@ img {
 .lead {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .text-center {

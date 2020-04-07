@@ -9,6 +9,9 @@ import { getCurrentUserProfile } from '../../actions/profile';
 import { deleteAccount } from '../../actions/profile';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import ProfileTop from '../profile/ProfileTop';
+import ProfileAbout from '../profile/ProfileAbout';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(() => ({
   margin: {
@@ -38,14 +41,18 @@ const Dashboard = () => {
     {profile ? (
       <Fragment>
         <DashboardActions />
-        <Experience experience={profile.experience} />
-        <Education education={profile.education} />
+        <div className="profile-grid my-1">
+          <ProfileTop profile={profile} />
+          <ProfileAbout profile={profile} />
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
+        </div>
+
 
         <div className="my-2">
-          <button
-            onClick={() => dispatch(deleteAccount())} className="btn btn-danger">
-            <i className="fas fa-user-minus">{' '}Delete My Account</i>
-          </button>
+          <Button color="secondary" variant="contained" endIcon={<DeleteIcon />} onClick={() => dispatch(deleteAccount())}>
+            Delete My Account
+          </Button>
         </div>
       </Fragment>
     ) :
