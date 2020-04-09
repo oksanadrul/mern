@@ -2,10 +2,11 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { profileState } from './profileInitialStates';
+import { useStyles } from './formStyles';
 import { createProfile, getCurrentUserProfile } from '../../actions/profile';
 
 import {
-  makeStyles, Button, Typography, InputLabel, MenuItem, FormHelperText, FormControl,
+  Button, Typography, InputLabel, MenuItem, FormHelperText, FormControl,
   Select, TextField, InputAdornment, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary
 } from '@material-ui/core';
 import PersonIcon from '@material-ui/icons/Person';
@@ -15,36 +16,6 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '60%',
-    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
-      width: '90%'
-    },
-    '& .MuiTextField-root': {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-    },
-
-  },
-  details: {
-    flexDirection: 'column',
-    '& > p': {
-      marginBottom: 15
-    },
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-  },
-  button: {
-    margin: theme.spacing(3),
-    '&.MuiButtonBase-root': {
-      marginLeft: 0
-    }
-  },
-}));
 
 
 const EditProfile = ({ history }) => {

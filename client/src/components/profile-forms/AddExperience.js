@@ -1,42 +1,17 @@
 import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { experienceState } from './profileInitialStates'
+import { experienceState } from './profileInitialStates';
+import { useStyles } from './formStyles'
 import { addExperience } from '../../actions/profile';
 
 import {
-  makeStyles, Button, Typography, TextField, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary,
-  FormControlLabel, Checkbox
+  Button, Typography, TextField, ExpansionPanel, ExpansionPanelDetails,
+  ExpansionPanelSummary,FormControlLabel, Checkbox
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '60%',
-    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
-      width: '90%'
-    },
-    '& .MuiTextField-root': {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-    },
-
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-  },
-  button: {
-    margin: theme.spacing(3),
-    '&.MuiButtonBase-root': {
-      marginLeft: 0
-    }
-  },
-  details: {
-    flexDirection: 'column',
-  },
-}));
 
 
 const AddExperience = ({ history }) => {
@@ -99,44 +74,26 @@ const AddExperience = ({ history }) => {
           <ExpansionPanelDetails className={classes.details}>
             <h4>From Date</h4>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  margin="normal"
-                  inputVariant="outlined"
-                  label="From"
-                  format="yyyy-MM-dd"
+                <KeyboardDatePicker margin="normal" inputVariant="outlined" label="From" format="yyyy-MM-dd"
                   value={from}
-                  onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      from: e,
-                    });
-                  }}
+                  onChange={(e) => {setFormData({...formData,from: e})}}
                 />
 
               <FormControlLabel
                 control={
                   <Checkbox name="current" color="primary" value={current} checked={current}
                     onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      current: !current,
-                      to: null
-                    });
-                    toggleDisabled(!toDateDisabled)
+                      setFormData({ ...formData, current: !current, to: null});
+                      toggleDisabled(!toDateDisabled)
                     }}
                   />
                 }
                 label="Current Job"
               />
               <h4>To Date</h4>
-              <KeyboardDatePicker margin="normal" inputVariant="outlined" disabled={toDateDisabled} label="To"
-                format="yyyy-MM-dd" value={to}
-                onChange={(e) => {
-                    setFormData({
-                      ...formData,
-                      to: e
-                    })
-                  }}
+              <KeyboardDatePicker margin="normal" inputVariant="outlined" disabled={toDateDisabled} label="To" format="yyyy-MM-dd"
+                value={to}
+                onChange={(e) => { setFormData({...formData, to: e})}}
                 />
               </MuiPickersUtilsProvider>
           </ExpansionPanelDetails>

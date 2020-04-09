@@ -17,8 +17,8 @@ const educationState = {
   school: '',
   degree: '',
   fieldofstudy: '',
-  from: '',
-  to: '',
+  from: new Date(),
+  to: new Date(),
   current: false,
   description: ''
 }
