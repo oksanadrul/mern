@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import { useDispatch } from 'react-redux';
-import { deleteExperience } from '../../actions/profile';
 import MaterialTable from 'material-table';
 import { Paper } from '@material-ui/core';
+
+import { useDispatch } from 'react-redux';
+import { deleteExperience } from '../../actions/profile';
 import { tableIcons, detailsRow, useStyles, tableOptions } from './tableSettings'
 
 
@@ -43,7 +44,7 @@ const Experience = ({ experience }) => {
           },
         ]}
         editable={{
-          onRowDelete: (oldData) => Promise.resolve(dispatch(deleteExperience(oldData._id)))
+          onRowDelete: (data) => Promise.resolve(dispatch(deleteExperience(data._id)))
         }}
       />
     </Paper>

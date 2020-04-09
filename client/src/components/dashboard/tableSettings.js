@@ -39,7 +39,7 @@ const useStyles = makeStyles(() => ({
     overflowX: 'auto',
     background: 'transparent',
     boxShadow: 'none',
-    maxWidth: '510px'
+    maxWidth: '495px'
   },
   margin: {
     marginTop: '1rem',
@@ -63,7 +63,7 @@ const tableOptions = {
 
 const detailsRow = (rowData) => {
   return (
-    <div style={{ padding: '12px 48px', maxWidth: '510px' }}>
+    <div style={{ padding: '12px 48px', maxWidth: '495px' }}>
       <span style={{ color: '#00bcd4' }}>Job description</span>: {rowData.description}
     </div>
   )

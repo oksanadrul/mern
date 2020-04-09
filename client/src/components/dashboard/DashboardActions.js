@@ -33,7 +33,7 @@ const DashboardActions = () => {
       <Button component={Link} to='/add-experience' variant="outlined" color="primary" startIcon={<WorkIcon />}>
         <span className="button-name">Add Experience</span>
       </Button>
-      <Button component={Link} to='/add-experience' variant="outlined" color="primary" endIcon={<CastForEducationIcon />}>
+      <Button component={Link} to='/add-education' variant="outlined" color="primary" endIcon={<CastForEducationIcon />}>
         <span className="button-name">Add Education</span>
       </Button>
       <Button color="primary" endIcon={<GetAppIcon />}>
