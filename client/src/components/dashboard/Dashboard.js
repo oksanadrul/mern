@@ -41,7 +41,7 @@ const Dashboard = () => {
     {profile ? (
       <Fragment>
         <DashboardActions />
-        <div className="profile-grid my-1">
+        <div className="dashboard-grid my-1">
           <ProfileTop profile={profile} />
           <ProfileAbout profile={profile} />
           <Experience experience={profile.experience} />
@@ -56,10 +56,11 @@ const Dashboard = () => {
         </div>
       </Fragment>
     ) :
-      <Fragment>
-        <p>You have not yet setup a profile, please add some info</p>
-        <Button component={Link} to='/create-profile' variant="outlined" color="primary" className={classes.margin}>Create Profile </Button>
-      </Fragment>}
+      !profile ? <Spinner /> :
+        <Fragment>
+          <p>You have not yet setup a profile, please add some info</p>
+          <Button component={Link} to='/create-profile' variant="outlined" color="primary" className={classes.margin}>Create Profile </Button>
+        </Fragment>}
   </Fragment>
 }
 

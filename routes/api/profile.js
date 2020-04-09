@@ -218,7 +218,7 @@ router.put('/experience', [auth, [
 
 router.delete('/experience/:exp_id', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 
     // Get remove index
     const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
@@ -282,7 +282,7 @@ router.put('/education', [auth, [
 
 router.delete('/education/:edu_id', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);;
 
     // Get remove index
     const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);

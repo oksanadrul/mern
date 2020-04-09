@@ -21,7 +21,7 @@ import { createProfile } from '../../actions/profile';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '60%',
-    ['@media (max-width:780px)']: {
+    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%'
     },
     '& .MuiTextField-root': {

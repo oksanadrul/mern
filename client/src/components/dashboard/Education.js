@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Moment from 'react-moment'
 import { useDispatch } from 'react-redux'
@@ -28,7 +28,7 @@ const Education = ({ education }) => {
 
 
   return (
-    <Fragment>
+    <div className="profile-github">
       <h2 className="my-2">Education Credentials</h2>
       <table className="table">
         <thead>
@@ -42,7 +42,7 @@ const Education = ({ education }) => {
         <tbody>{educations}</tbody>
       </table>
 
-    </Fragment>
+    </div>
   )
 }
 

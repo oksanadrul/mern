@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '60%',
-    ['@media (max-width:780px)']: {
+    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
       width: '90%'
     },
     '& .MuiTextField-root': {
@@ -243,8 +243,8 @@ const EditProfile = ({ history }) => {
             />
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <Button className={classes.button} type="submit" variant="contained" color="primary">Submit</Button>
         <Button className={classes.button} component={Link} to='/dashboard' variant="outlined" color="primary">Go Back</Button>
+        <Button className={classes.button} type="submit" variant="contained" color="primary">Submit</Button>
       </form>
     </Fragment>
   )

@@ -1,46 +1,52 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import Moment from 'react-moment'
-import { useDispatch } from 'react-redux'
-import { deleteExperience } from '../../actions/profile'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import { useDispatch } from 'react-redux';
+import { deleteExperience } from '../../actions/profile';
+import MaterialTable from 'material-table';
+import { Paper } from '@material-ui/core';
+import { tableIcons, detailsRow, useStyles, tableOptions } from './tableSettings'
 
 
 const Experience = ({ experience }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
-  const experiences = experience.map(exp => (
-    <tr key={exp._id}>
-      <td >{exp.company}</td>
-      <td className="hide-sm">{exp.title}</td>
-      <td className="hide-sm">
-        <Moment format='YYYY/MM/DD'>{exp.from}</Moment> - {' '}
-        {!exp.to ? (
-          'Now'
-        ) : (
-            <Moment format='YYYY/MM/DD'>{exp.to}</Moment>
-          )}
-      </td>
-      <td>
-        <button onClick={() => dispatch(deleteExperience(exp._id))} className="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-  ));
+  const columns = [
+    { title: 'Company', field: 'company' },
+    { title: 'Title', field: 'title' },
+    {
+      title: 'Years',
+      field: 'years',
+      sorting: false,
+      render: (rowData) => <Fragment>
+        <Moment format='YYYY/MM/DD'>{rowData.from}</Moment> - {' '}
+        {!rowData.to ? ('Now') : (
+          <Moment format='YYYY/MM/DD'>{rowData.to}</Moment>
+        )}
+      </Fragment>
+    },
+  ];
 
   return (
-    <Fragment>
+    <Paper className={`profile-exp ${classes.root}`}>
       <h2 className="my-2">Experience Credentials</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th className="hide-sm">Title</th>
-            <th className="hide-sm">Years</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>{experiences}</tbody>
-      </table>
-    </Fragment>
+      <MaterialTable
+        icons={tableIcons}
+        columns={columns}
+        data={experience}
+        options={tableOptions}
+        detailPanel={[
+          {
+            tooltip: 'Details',
+            render: rowData => detailsRow(rowData)
+          },
+        ]}
+        editable={{
+          onRowDelete: (oldData) => Promise.resolve(dispatch(deleteExperience(oldData._id)))
+        }}
+      />
+    </Paper>
   )
 }
 

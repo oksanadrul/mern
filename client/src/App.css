@@ -311,7 +311,7 @@ button {
   align-items: center;
   padding: 0.7rem 2rem;
   position: fixed;
-  z-index: 1;
+  z-index: 11;
   width: 100%;
   top: 0;
   border-bottom: solid 1px var(--primary-color);
@@ -373,14 +373,26 @@ button {
   transform: scale(1.02);
 }
 
+/* Dashboard Page */
+.dashboard-grid {
+  display: grid;
+  grid-template-areas:
+    'top'
+    'about'
+    'exp'
+    'github';
+  grid-gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
 /* Profile Page */
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    'top'
+    'about'
+    'exp'
+    'github';
   grid-gap: 1rem;
 }
 
@@ -431,8 +443,8 @@ button {
   margin-bottom: 1rem;
 }
 
-.profile-exp > div,
-.profile-edu > div {
+.profile .profile-exp > div,
+.profile .profile-edu > div {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
   border-bottom: #ccc 1px dotted;

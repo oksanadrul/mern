@@ -19,7 +19,7 @@ const ProfileTop = ({
         alt="avatar"
       />
       <h1 className="large">{name}</h1>
-      <p className="lead">{status} {company && <span> at {company}</span>}</p>
+      <p className="lead">{status} {company && <span>&nbsp; at {company}</span>}</p>
       <p>{location && <span>{location}</span>}</p>
       <div className='icons my-1'>
         {website && (

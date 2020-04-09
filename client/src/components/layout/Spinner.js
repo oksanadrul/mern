@@ -1,21 +1,19 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { CircularProgress, Backdrop } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-    position: 'absolute',
-    top: '79px',
-    left: '0'
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
   },
 }));
-
 
 export default () => {
   const classes = useStyles();
   return (<div className={classes.root}>
-    <LinearProgress color="primary" />
+    <Backdrop className={classes.backdrop} open={true} >
+      <CircularProgress value={5} />
+    </Backdrop>
   </div>
   )
 };
