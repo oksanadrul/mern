@@ -27,8 +27,8 @@ const experienceState = {
   company: '',
   title: '',
   location: '',
-  from: '',
-  to: '',
+  from: new Date(),
+  to: new Date(),
   current: false,
   description: ''
 };
